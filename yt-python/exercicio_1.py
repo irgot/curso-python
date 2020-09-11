@@ -1,7 +1,6 @@
 #!/home/igor/.virtualenv/curso/bin/python
 import math
 import random
-import pygame
 import requests
 
 def desafio2():
@@ -154,7 +153,7 @@ def desafio28():
 def desafio29():
     v1=float(input('Digite a velocidade do veículo:'))
     if v1>80:
-        print('Multado! R${}'.format((v1-80)*7))
+        print('Multado! R${:.2f}'.format((v1-80)*7))
     
 def desafio30():
     n1=int(input('Digite um número para saber se é par ou impar: '))
@@ -171,4 +170,71 @@ def desafio31():
     else:
         valor=d1*0.45
     print('O valor da viagem é de: R${:.2f}'.format(valor))
-desafio31()
+
+def desafio32():#anobissexto
+    a1 = int(input('Digite o ano para saber se é bissexto: '))
+    print("É bissexto." if a1%4==0 and not(a1%100==0 and a1%400!=0) else "Não é bissexto.")
+
+
+def desafio33():#comparar 3 numeros
+    n1 = int(input('Digite o 1º número: '))
+    n2 = int(input('Digite o 2º número: '))
+    n3 = int(input('Digite o 3º número: '))
+
+    if n1>n2: 
+        if n1>n3:
+            print('1º é o maior número')
+            print('2º é o menor número' if n2<n3 else '3º é o menor número')
+        else:
+            print('3º é o maior número')
+            print('2º é o menor número')
+    else:
+        if n2>n3:
+            print('2º é o maior número')
+            print('3º é o menor número' if n3<n1 else '1º é o menor número')
+        else:
+            print('3º é o maior número')
+            print('1º é o  menor número')
+    
+    menor = n1
+    if n2<n3 and n2<n1:
+        menor=n2
+    if n3<n2 and n3<n1:
+        menor=n3
+
+    maior=n1
+    if n2>n3 and n2>n1:
+        maior=n2
+    if n3>n2 and n3>n1:
+        maior=n3
+    
+    print('Maior:{}, menor:{}'.format(maior,menor))
+
+
+    
+
+def desafio34():#salario
+    s1 = float(input("Digite o salário do funcionário: R$"))
+    if s1>1250:
+        sn=s1*1.1
+    else:
+        sn=s1*1.15
+    
+    print("Novo salario: R${:.2f}".format(sn))
+
+def desafio35():#comprimento retas
+    l1=float(input('Digite o comprimento do 1º lado: '))
+    l2=float(input('Digite o comprimento do 2º lado: '))
+    l3=float(input('Digite o comprimento do 3º lado: '))
+    message=('Esse triângulo não pode existir!')
+    if l1+l2>l3 and l1+l3>l2 and l2+l3>l1:
+        message='Esse triângulo pode existir!'
+    
+    print(message)
+
+
+
+    
+
+
+desafio35()
