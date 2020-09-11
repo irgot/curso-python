@@ -234,7 +234,15 @@ def desafio35():#comprimento retas
 
 
 
+
+def aulacores():
+    print('\033[0;30;41m Teste\033[m')
+    print('\033[4;33;44m Teste\033[m')
+    print('\033[1;35;43m Teste\033[m')
+    print('\033[30;42m Teste\033[m')
+    print('\033[m Teste\033[m')
+    print('\033[7;30m Teste\033[m')
     
 
 
-desafio35()
+aulacores()
