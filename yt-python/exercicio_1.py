@@ -81,9 +81,94 @@ def desafio21():
     pygame.mixer.music.play()
     pygame.event.wait()
 
-desafio21()
 
 
+def aula09():
+    frase = 'Curso em Vídeo Python'
 
-# desafio3()
 
+def desafio22():
+    nome = input('Digite seu nome completo: ')
+    print('Nome em maiusculas: {}'.format(nome.upper()))
+    print('Nome em minusculas: {}'.format(nome.lower()))
+    print('Quantas letras ao todo (sem os espaços): {}'.format(len(nome.replace(' ',''))))
+    print('Quantas letras tem o primeiro nome: {}'.format(len(nome.split()[0])))
+
+
+def desafio23():
+    numero = int(input('Digite um número de 0-9999: '))
+    # if len(numero)>=1:
+    #     print('Unidade: {}'.format(numero[-1]))
+    # if len(numero)>=2:
+    #     print('Dezena: {}'.format(numero[-2]))
+    # if len(numero)>=3:
+    #     print('Centena: {}'.format(numero[-3]))
+    # if len(numero)>=4:
+    #     print('Milhar: {}'.format(numero[-4]))
+    u = numero // 1 % 10
+    d = numero // 10 % 10
+    c = numero // 100 % 10
+    m = numero // 1000 % 10
+
+    print('Unidade: {}'.format(u))
+    print('Dezena: {}'.format(d))
+    print('Centena: {}'.format(c))
+    print('Milhar: {}'.format(m))
+    
+
+def desafio24():
+    cidade=input('Digite o nome de sua cidade: ').strip()
+    if(cidade.upper().startswith('SANTO')):
+        print('Sua cidade começa com Santo')
+    else:
+        print('Sua cidade não começa com Santo')
+
+def desafio25():
+    nome = input('Digite o seu nome: ').strip()
+    if('SILVA' in nome.upper()):
+        print('Seu nome tem Silva')
+    else:
+        print('Seu nome não tem Silva')
+
+def desafio26():
+    frase = input('Digite uma frase: ').strip()
+    print('A letra ''A'' aparece {}x'.format(frase.upper().count('A')))
+    print('A primeira posição que ela aparece é: {}'.format(frase.upper().find('A')))
+    print('A ultima posição que ela aparece é: {}'.format(frase.upper().rfind('A')))
+
+def desafio27():
+    nome = input('Digite seu nome: ').strip()
+    print('Primeiro nome: {}'.format(nome.split()[0]))
+    print('Ultimo nome: {}'.format(nome.split()[-1]))
+
+def desafio28():
+    print('Pensando em um número entre 0 e 5...')
+    n1 = random.randint(0,5)
+    n2 = int(input('Tente adivinhar: '))
+    if n1==n2:
+        print('Parabéns, você acertou!')
+    else:
+        print('Que pena, você errou!')
+    print('Parabéns!' if n1==n2 else "Que Pena! o número era: {}".format(n1))
+
+def desafio29():
+    v1=float(input('Digite a velocidade do veículo:'))
+    if v1>80:
+        print('Multado! R${}'.format((v1-80)*7))
+    
+def desafio30():
+    n1=int(input('Digite um número para saber se é par ou impar: '))
+    if (n1%2)==0:
+        print("O número é par")
+    else:
+        print('O numero é impar')
+
+
+def desafio31():
+    d1 = float(input('Digite a distância da viagem: '))
+    if d1<=200:
+        valor=d1*0.5
+    else:
+        valor=d1*0.45
+    print('O valor da viagem é de: R${:.2f}'.format(valor))
+desafio31()
