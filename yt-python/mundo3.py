@@ -101,7 +101,6 @@ def desafio78():
         if valor==min(valores):
             print(index,end='... ')
             pass
-
         pass
     print(' ')
     
@@ -199,4 +198,201 @@ def desafio83():
     print('Sua expressão está errada!' if erro else 'Sua expressão está correta!')    
     pass
 
-desafio83()
+
+
+def desafio84():
+    mais_pesadas=list()
+    mais_leves=list()
+    pessoas=list()
+    pessoa=list()
+    
+    while True:
+        c=' '
+        pessoa.append(str(input('Digite o nome de uma pessoa: ').capitalize()))
+        pessoa.append(float(input('Digite o peso desta pessoa: ')))
+        pessoas.append(pessoa[:])
+        pessoa.clear()
+        while c not in 'SN':
+            c=str(input('Deseja cadastrar outra pessoa? [S/N]')).upper().strip()[0]
+        if c=='N':
+            break
+    for indx,pessoa in enumerate(pessoas):
+        if indx==0:
+            mais_pesadas.append(pessoa[:])
+            mais_leves.append(pessoa[:])
+        else:
+            if pessoa[1]>mais_pesadas[0][1]:
+                mais_pesadas.clear()
+                mais_pesadas.append(pessoa[:])
+            elif pessoa[1]==mais_pesadas[0][1]:
+                mais_pesadas.append(pessoa[:])
+                pass
+            if pessoa[1]<mais_leves[0][1]:
+                mais_leves.clear()
+                mais_leves.append(pessoa[:])
+            elif pessoa[1]==mais_leves[0][1]:
+                mais_leves.append(pessoa[:])
+                pass
+            pass
+        pass
+    print('='*32)
+    print(f'Foram cadastrada(s) {len(pessoas)} pessoa(s).')
+    print(f'O maior peso foi: {mais_pesadas[0][1]} e as pessoas foram: ',end='')
+    for pessoa in mais_pesadas:
+        print(f'{pessoa[0]}, ',end='')
+    print(' ')
+    print(f'O menor peso foi: {mais_leves[0][1]} e as pessoas foram: ', end='')
+    for pessoa in mais_leves:
+        print(f'{pessoa[0]}, ',end='')
+    print(' ')
+
+    pass
+def desafio85():
+    numeros=list()
+    pares=list()
+    impares=list()
+    for i in range(0,7):
+        numero=int(input(f'Digite o {i+1}º número: '))
+        if numero%2==0:
+            pares.append(numero)
+        else:
+            impares.append(numero)
+    numeros.append(sorted(pares[:]))
+    numeros.append(sorted(impares[:]))
+    print(f'Os números pares foram: {numeros[0]}')
+    print(f'Os números impares foram: {numeros[1]}')
+    pass
+def desafio86():
+    matriz=list()
+    linha=list()
+    for i in range(0,3):
+        for j in range(0,3):
+            numero=int(input(f'Digite um valor para [{i},{j}]: '))
+            linha.append(numero)
+            pass
+        matriz.append(linha[:])
+        linha.clear()
+        pass
+    for linha in matriz:
+        for numero in linha:
+            print(f'[{numero:.^5}]',end='')
+            pass
+        print(' ')
+    print(matriz)
+    
+
+
+    pass
+def desafio87():
+    matriz=list()
+    linha=list()
+    somapares=soma3coluna=maiorsegundalinha=0
+    for i in range(0,3):
+        for j in range(0,3):
+            numero=int(input(f'Digite um valor para [{i},{j}]: '))
+            linha.append(numero)
+            pass
+        matriz.append(linha[:])
+        linha.clear()
+        pass
+    print('='*32)
+    for i,linha in enumerate(matriz):
+        for j,numero in enumerate(linha):
+            print(f'[{numero:.^5}]',end='')
+            somapares+=numero if numero%2==0 else 0
+            if j==2:
+                soma3coluna+=numero
+            if i==1:
+                if numero>maiorsegundalinha:
+                    maiorsegundalinha=numero
+                    pass
+                pass
+            pass
+        print(' ')
+        pass
+    
+    print('='*32)
+    print(f'A soma de todos os valores pares digitados: {somapares}')
+    print(f'A soma dos valores da terceira coluna: {soma3coluna}')
+    print(f'O maior valor da segunda linha é: {maiorsegundalinha}')            
+    pass
+def desafio88():
+    from random import randint
+    palpites=list()
+    jogo=list()
+    numero=jogos=i=0
+    print('='*80)
+    print(f'{"GERADOR DE JOGOS DA MEGASENA!":=^80}')
+    print('='*80)
+    jogos=int(input('Digite a quantidade de jogos de 6 números a serem geradas: '))
+    for i in range(0,jogos):
+        jogo.clear()
+        for j in range(0,6):
+            numero=0 
+            while numero in jogo or numero==0:
+                numero=randint(1,60)
+                pass
+            jogo.append(numero)
+            pass
+        palpites.append(jogo[:])
+        pass
+    for indx,jogo in enumerate(palpites):
+        print(f'{indx+1:3}º Jogo: [ ',end='')
+        jogo.sort()
+        for jdx,numero in enumerate(jogo):
+            if jdx<5:
+                print(f'{numero:02}',end=', ')
+            else:
+                print(f'{numero:02}',end=' ')
+        print('] ')
+    print(f'{"< Boa Sorte! >":=^80}')
+    pass
+def desafio89():
+    alunos=list()
+    aluno=list()
+    notas=list()
+    nota=0
+    nome=''    
+    while True:
+        c=' '
+        nome=str(input('Digite o nome do aluno: '))
+        for i in range(0,2):
+            nota=float(input(f'Digite a nota {i+1}º do aluno: '))
+            notas.append(nota)
+        aluno.append(nome)
+        aluno.append(notas[:])
+        alunos.append(aluno[:])
+        aluno.clear()
+        notas.clear()
+        while c not in "SN":
+            c=str(input('Deseja cadastrar outro aluno? [S/N]')).upper().strip()[0]
+        if c=='N':
+            break
+        pass
+    print('='*60)
+    print(f'{"BOLETIM":=^60}')
+    print('='*60)
+    print(f'{"No.":<5} {"Nome":<40} {"Media":>10}')
+    print('-'*60)
+    for indx,aluno in enumerate(alunos):
+        somanota=0
+        media=0
+        print(f'{indx:<5}', end='')
+        print(f'{aluno[0]:<40}', end='')
+        for nota in aluno[1]:
+            somanota+=nota
+        media=somanota/len(aluno[1])
+        print(f'{media:>10}')
+        pass
+    print('-'*60)
+    while True:        
+        print('='*60)
+        id = int(input('Mostrar nota de qual aluno? (999 para sair)'))
+        if id==999:
+            break
+        else:
+            print(f'Nota de {alunos[id][0]} são {alunos[id][1]}')
+    print('='*60)
+    print('Volte sempre!')
+
+desafio89()
