@@ -395,4 +395,218 @@ def desafio89():
     print('='*60)
     print('Volte sempre!')
 
-desafio89()
+def desafio90():
+    aluno={}
+    aluno['nome']=str(input('Nome: '))
+    aluno['media']=float(input(f'Média do {aluno["nome"]}: '))
+    if aluno['media']>=7:
+        aluno['situacao']='Aprovado'
+    elif aluno['media']>=5:
+        aluno['situacao']='Recuperacao'
+    else:
+        aluno['situacao']='Reprovado'
+
+    print(f'Nome é igual a {aluno["nome"]}')
+    print(f'Média é igual a {aluno["media"]}')
+    print(f'Situação é igual a {aluno["situacao"]}')
+    pass
+def desafio91():
+    from random import randint
+    from time import sleep
+    from operator import itemgetter
+    jogadores={}
+    sorted2={}
+    print('Valores sorteados:')
+    for i in range(1,5):
+        jogadores[f'jogador{i}']=randint(1,6)
+        print(f'    O jogador{i} tirou: {jogadores[f"jogador{i}"]}')
+        sleep(0.5)
+    
+    print('Ranking dos jogadores: ')
+    sorted_jogadores = sorted(jogadores.items(),key=lambda x: x[1],reverse=True)    
+    for  indx,jogador in enumerate(sorted_jogadores):
+        print(f'    {indx+1}º lugar: {jogador[0]} com {jogador[1]}.')
+        sleep(0.5)
+    print('='*32)
+    sorted2=sorted(jogadores.items(),key=itemgetter(1),reverse=True)
+    print(sorted2)
+
+
+def desafio92():
+    from datetime import date
+    pessoa={}
+    pessoa['nome']=str(input('Nome: ')).capitalize()
+    pessoa['idade']=date.today().year-int(input('Ano de nascimento: '))
+    pessoa['cpts']=int(input('CPTS (0 não tem): '))
+    if pessoa['cpts']!=0:        
+        pessoa['contratacao']=int(input('Ano de contratação: '))
+        pessoa['salario']=float(input('Salário: '))
+        pessoa['aposentadoria']=(35-(date.today().year-pessoa['contratacao']))+pessoa['idade']    
+    print('=-'*32)
+    print(pessoa)
+    for indx,valor in pessoa.items():
+        print(f'{indx} tem o valor {valor}.')
+
+
+
+def desafio93():
+    jogador={}
+    jogador['nome']=input('Nome do jogador: ')
+    partidas=int(input('Quantidade de partidas: '))
+    jogador['gols']=[]
+    jogador['total']=0
+    for i in range(0,partidas):
+        jogador['gols'].append(int(input(f'Gols na {i+1}ª partida: ')))
+        # jogador['total']+=jogador['gols'][i]
+    jogador['total']=sum(jogador['gols'])
+    print('-='*32)
+    print(jogador)
+    print('-='*32)
+    for chave,valor in jogador.items():
+        print(f'O campo {chave} tem o valor {valor}.')       
+    print('-='*32) 
+    print(f'O jogador {jogador["nome"]} jogou {len(jogador["gols"])} partidas.')
+    for indx,gols in enumerate(jogador['gols']):
+        print(f'    =>Na partida {indx+1}, fez {gols} gols.')
+    print(f'Foi um total de {jogador["total"]} gols.')
+
+
+
+def desafio94():
+    pessoas=[]
+    pessoa={}
+    media=0
+    somaIdade=0
+    count_pessoa=0
+    while True:        
+        continuar= ' '
+        count_pessoa+=1
+        pessoa['nome']=input(f'Nome {count_pessoa}ª pessoa: ').capitalize()
+        pessoa['sexo']=' '
+        while pessoa['sexo'] not in 'MF':
+            pessoa['sexo']=input('Sexo [M/F]: ').upper().strip()[0]
+        pessoa['idade']=int(input('Idade: '))
+        somaIdade+=pessoa['idade']
+        while continuar not in 'SN':
+            continuar=str(input('Deseja continuar? [S/N]')).upper().strip()[0]
+        pessoas.append(pessoa.copy())
+        pessoa.clear()
+        if continuar in 'N':
+            break
+        pass
+    print('-='*32)
+    print(f'- O grupo tem {len(pessoas)} pessoas.')
+    media=somaIdade/len(pessoas)
+    print(f'- A media de idade é de {media} anos.')
+    print(f'- As mulheres cadastradas foram: ',end='')
+    for pessoa in pessoas:
+        if pessoa['sexo']=='F':
+            print(f'{pessoa["nome"]} ',end='')
+    print('')    
+    print(f'- Lista das pessoas que estão acima da média:')
+    for pessoa in pessoas:
+        if pessoa['idade']>media:
+            for key,value in pessoa.items():
+                print(f'{key} = {value}; ', end='')
+            print('')
+    print('<< ENCERRADO >>')
+
+    pass
+
+def desafio95():
+    jogadores=[]
+    jogador={}
+    while True:
+        c=' '
+        jogador['nome']=input('Nome do jogador: ').capitalize().strip()
+        partidas=int(input('Partidas: '))
+        jogador['gols']=[]
+        jogador['total']=0
+        for i in range(0,partidas):
+            jogador['gols'].append(int(input(f'Número de gols na {i+1}ª partida: ')))
+            jogador['total']=jogador['gols'][i] if i==0 else jogador['total']+jogador['gols'][i]
+        jogadores.append(jogador.copy())
+        jogador.clear()
+        while c not in 'NS':
+            c = str(input('Deseja continuar? [S/N]')).upper().strip()[0]        
+        if c=='N':
+            break
+
+        pass
+    print('=-'*32)
+    print(f'{"cod":<4}{"nome":<20}{"gols":<15}{"total":<5}')
+    print('-'*45)
+    # print(jogadores)
+    for indx,jogador in enumerate(jogadores):
+        print(f'{indx:<4}{jogador["nome"]:<20}{str(jogador["gols"]):<15}{jogador["total"]:<5}')
+    print('-'*45)
+    while True:
+        indx=int(input('Mostrar dados de qual jogador? '))
+        if indx==999:
+            break
+        if indx<len(jogadores):
+            print(f'-- LEVANTAMENTO DO JOGADOR: {jogadores[indx]["nome"]}')
+            for key,value in enumerate(jogadores[indx]["gols"]):
+                print(f'    No jogo {key+1} fez {value} gols.')
+                pass
+            pass
+        else:
+            print(f'ERRO! Não existe jogador com o código {indx}! Tente novamente.')
+            pass
+        pass
+    pass
+
+
+def desafio96():
+    def area(l,c):
+        print(f'A area do terreno é: {l*c}mt²')
+    area(20,3)
+
+def desafio97():
+    def escreva(txt):
+        print(f'~'*(len(txt)+6))
+        print(f'   {txt}   ')
+        print(f'~'*(len(txt)+6))
+    escreva('Gustavo Guanabara')
+    escreva('Curso de Python no YouTube')
+    escreva('CeV')
+
+def desafio98():
+    from time import sleep
+    def contador(i,f,p):
+        if p==0:
+            p=1
+        if i<f:
+            fim=f+1
+            if p>0:
+                passo=p
+            else:
+                passo=-p
+        else:
+            fim=f-1
+            if p>0:
+                passo=-p
+            else:
+                passo=p
+        print('-='*32)    
+        print(f'Contagem de {i} até {f} de {passo} em {passo}')
+        for count in range(i,fim,passo):
+            print(f'{count} ', end='')
+            # sleep(0.5)
+        print('Fim!')
+        print('-='*32)    
+    
+    contador(1,10,1)    
+    contador(10,0,2)
+    print('Agora é sua vez: ')
+    i=int(input('Início: '))
+    f=int(input('Fim: '))
+    p=int(input('Passo: '))
+    contador(i,f,p)
+
+desafio98()
+
+
+
+
+
