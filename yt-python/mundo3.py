@@ -579,7 +579,7 @@ def desafio97():
 
 def desafio98():
     from time import sleep
-    def contador(i,f,p):
+    def contador(i,f,p):        
         if p==0:
             p=1
         if i<f:
@@ -658,7 +658,169 @@ def desafio100():
     print(lista)
     somaPar(lista)
     pass
-desafio99()
+
+def desafio101():
+    from datetime import date
+    def voto(nascimento):
+        idade=date.today().year - nascimento
+        msg=f'Com {idade} anos: '
+        if idade <16:
+            msg+='NÃO VOTA.'
+        elif idade <18:
+            msg+='VOTO OPCIONAL.'
+        elif idade<66:
+            msg+='VOTO OBRIGATÓRIO.'
+        else:
+            msg+='VOTO OPCIONAL.'
+        return msg
+            
+    
+    titulo('Voto!')
+    nascimento=int(input('Em que ano você nasceu: '))
+    print(voto(nascimento))
+
+def desafio102():    
+    titulo('Func Fatorial')
+    def fatorial(n,show=False):
+        """Função para retornar o fatorial de um número.
+
+        Args:
+            n (int): Número a ser calculado o fatorial.
+            show (bool, optional): Exibir ou não a conta. Defaults to False.
+
+        Returns:
+            str: String com o valor do fatorial ou o calculo em sí.
+        """
+        msg=''
+        fatorial = 1
+        for i in range(n,0,-1):
+            if show:                
+                msg+=f'{i} * ' if i>1 else f'{i} = '
+                
+            fatorial*=i
+            
+
+        msg+=f'{fatorial}'
+        return msg    
+    print(fatorial(5))
+    print(fatorial(5,True))
+
+def desafio103():
+    titulo('Ficha jogador')
+    def ficha(jogador='<desconhecido>',gols='0'):
+        """Ficha do jogador
+
+        Args:
+            jogador (str, optional): Nome do Jogador. Defaults to '<desconhecido>'.
+            gols (int, optional): Número de gols marcados. Defaults to 0.
+        """
+        jogador=jogador if jogador!='' else '<desconhecido>'
+        gols=gols if gols!='' else '0'
+        return(f'O jogador {jogador} fez {gols} gols no campeonato.')
+    
+    jogador=input('Nome do jogador: ')
+    gols=input('Número de gols marcados: ')
+    
+    print(ficha(jogador,gols))
+    
+def desafio104():
+    titulo('leia número inteiro')
+    def leiaInt(str):
+        n=' '        
+        while not n.isnumeric():
+            n=input(str)
+            if not n.isnumeric():
+                print('Erro! Digite um número inteiro')
+                pass
+            pass
+        return int(n)
+    n=leiaInt('Número: ')
+    print(f'Você digitou o número {n}')
+
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+def desafio105():
+    titulo('notas')
+    def notas(*nota,sit=False):
+        """Função para verificar notas* e retornar a situação de vários alunos
+
+        Args:
+            sit (bool, optional): retorna a situação da sala. Defaults to False.
+
+        Returns:
+            dict: retorna um dicionário com os valores
+        """
+        retorno={}        
+        retorno['total']=len(nota)
+        retorno['maior']=max(nota)
+        retorno['menor']=min(nota)
+        retorno['media']=sum(nota)/len(nota)
+        if sit:
+            if retorno['media']>=7:
+                retorno['situacao']='BOA'
+            elif retorno['media']>=5:
+                retorno['situacao']='RAZOÁVEL'
+            elif retorno['media']<5:
+                retorno['situacao']='RUIM'
+        return retorno
+        pass
+    resp=notas(3.5,2,6.5,2,7,4)
+    print(resp)
+
+def desafio106():
+    def ajuda(com):
+        help(com)
+    from time import sleep
+    titulo(bcolors.HEADER+'     Interactive help 2.0'+bcolors.ENDC)    
+    while True:
+        cmd = str(input(bcolors.OKBLUE+bcolors.BOLD+'HELP>'+bcolors.ENDC)).strip()
+        if cmd=='fim':
+            break
+        print(f'{bcolors.BOLD}{bcolors.OKGREEN} Acessando o manual do comando {cmd} {bcolors.ENDC}')
+        sleep(1)
+        print(f'{bcolors.WARNING}',end='')
+        ajuda(cmd)
+        print(f'{bcolors.ENDC}')
+        
+    print(f'{bcolors.FAIL} Volte sempre! {bcolors.ENDC}')
+
+
+def desafio107():
+    import moeda
+    p = float(input('Preço: R$'))
+    print(f'A metade de {p} é {moeda.metade(p)}')
+    print(f'O dobro de {p} é {moeda.dobro(p)}')
+    print(f'Aumentando 10%, temos {moeda.aumentar(p,10)}')
+    print(f'Reduzindo 13%, temos {moeda.diminuir(p,13)}')
+def desafio108():
+    import moeda
+    p = float(input('Preço: R$'))
+    print(f'A metade de {moeda.moeda(p)} é {moeda.moeda(moeda.metade(p))}')
+    print(f'O dobro de {moeda.moeda(p)} é {moeda.moeda(moeda.dobro(p))}')
+    print(f'Aumentando 10%, temos {moeda.moeda(moeda.aumentar(p,10))}')
+    print(f'Reduzindo 13%, temos {moeda.moeda(moeda.diminuir(p,13))}')
+def desafio109():
+    import moeda
+    p = float(input('Preço: R$'))
+    m=True
+    print(f'A metade de {moeda.moeda(p)} é {moeda.metade(p,m)}')
+    print(f'O dobro de {moeda.moeda(p)} é {moeda.dobro(p,m)}')
+    print(f'Aumentando 10%, temos {moeda.aumentar(p,10,m)}')
+    print(f'Reduzindo 13%, temos {moeda.diminuir(p,13,m)}')
+def desafio110():
+    import moeda
+    p = float(input('Preço: R$'))
+    moeda.resumo(p,80,35)
+desafio110()
 
 
 
