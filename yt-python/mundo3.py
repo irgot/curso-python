@@ -556,11 +556,17 @@ def desafio95():
         pass
     pass
 
-
+def titulo(msg):
+    print('-'*32)
+    print(f'{msg:^32}')
+    print('-'*32)
 def desafio96():
     def area(l,c):
-        print(f'A area do terreno é: {l*c}mt²')
-    area(20,3)
+        print(f'A area do terreno é: {l*c}m²')    
+    titulo('Controle de terrenos')
+    largura=float(input('Largura do terreno (m): '))
+    comprimento=float(input('Comprimento do terreno (m): '))
+    area(largura,comprimento)
 
 def desafio97():
     def escreva(txt):
@@ -591,8 +597,8 @@ def desafio98():
         print('-='*32)    
         print(f'Contagem de {i} até {f} de {passo} em {passo}')
         for count in range(i,fim,passo):
-            print(f'{count} ', end='')
-            # sleep(0.5)
+            print(f'{count} ', end='', flush=True)
+            sleep(0.5)
         print('Fim!')
         print('-='*32)    
     
@@ -604,7 +610,55 @@ def desafio98():
     p=int(input('Passo: '))
     contador(i,f,p)
 
-desafio98()
+def desafio99():
+    def maior(*num):
+        from time import sleep
+        # print(f'O maior valor é: {max(num)}')
+        maior=0
+        print('-='*32)
+        print('Analisando os valores passados...')
+        for i,v in enumerate(num):
+            print(v,end=' ',flush=True)
+            sleep(0.5)
+            if i==0:
+                maior=v
+            elif v>maior:
+                maior=v
+                pass
+            pass
+        print(f'\nforam passados {len(num)} valores.')
+        print(f'O maior valor é: {maior}')            
+        pass
+    maior(0,10,20,3,33,59,1,2,20)
+    maior(4,7,0)
+    maior(6)
+    maior()
+
+def desafio100():
+    def sorteio(lst):
+        from random import randint
+        for i in range(0,5):
+            lst.append(randint(0,99))
+        pass
+    def somaPar(lst):
+        soma=0
+        for v in lst:
+            if v%2==0:
+                soma+=v
+                pass
+            pass
+        print(f'A soma dos valores pares é: {soma}')
+        pass
+        
+    lista=[]
+    sorteio(lista)
+    print(lista)
+    somaPar(lista)
+    sorteio(lista)
+    print(lista)
+    somaPar(lista)
+    pass
+desafio99()
 
 
 
