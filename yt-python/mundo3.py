@@ -817,10 +817,73 @@ def desafio109():
     print(f'Aumentando 10%, temos {moeda.aumentar(p,10,m)}')
     print(f'Reduzindo 13%, temos {moeda.diminuir(p,13,m)}')
 def desafio110():
-    import moeda
+    from utilidades import moeda
     p = float(input('Preço: R$'))
     moeda.resumo(p,80,35)
-desafio110()
+
+def desafio112():
+    from utilidades import dado
+    from utilidades import moeda
+    p = dado.leiaDinheiro('Digite o preço: R$')
+    moeda.resumo(p,35,22)
+    pass
+
+def desafio113():
+    def leiaInt(msg):
+        while True:
+            try:
+                n = int(input(msg))
+            except ValueError:
+                print('Erro no valor digitado, tente novamente.')
+                erro=True
+            except KeyboardInterrupt:
+                print('O usuário preferiu não digitar esse número.')
+                n=0
+                erro=False
+            else:
+                erro=False
+            finally:
+                if not erro:
+                    break
+            pass
+        return n
+
+    def leiaReal(msg):
+        while True:
+            try:
+                n=float(input(msg))
+            except ValueError:
+                print('Erro no valor digitado, tente novamente.')
+                erro=True
+            except KeyboardInterrupt:
+                print('O usuário preferiu não informar o número')
+                n=0
+                erro=False
+            else:
+                erro=False
+            finally:
+                if not erro:
+                    break
+                pass
+            pass
+        return n
+    n1=leiaInt('Digite um número inteiro: ')
+    r1=leiaReal('Digite um número real: ')
+    print(f'O valor inteiro digitado foi {n1} e o real foi {r1}')
+    pass
+def desafio114():
+    from requests import request
+    try:
+        res=request('GET','http://pudim.com.br')        
+    except Exception:
+        print('Erro ao acessar!')
+    else:
+        print('Sucesso ao acessar!')
+    finally:
+        print('Volte sempre!')
+    
+        
+desafio114()
 
 
 
