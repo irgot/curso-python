@@ -1,4 +1,14 @@
 {
     "powershell.codeFormatting.addWhitespaceAroundPipe": true,
-    "python.pythonPath": "C:\\Users\\igors\\.conda\\envs\\alura_pandas\\python.exe"
+    "python.dataScience.jupyterServerURI": "local",
+    "[css]": {
+
+        "editor.suggest.insertMode": "replace"
+    },
+    "python.venvFolders": [
+        "C:\\Users\\igors\\.conda\\envs",
+        "C:\\programData\\Anaconda3\\envs\\"
+    ],
+    "python.venvPath": "C:\\Users\\igors\\.conda\\envs,C:\\programData\\Anaconda3\\envs\\",
+    "python.pythonPath": "C:\\Users\\igors\\envs\\teste\\Scripts\\python.exe"
 }
