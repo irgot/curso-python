@@ -1,4 +1,4 @@
 {
     "powershell.codeFormatting.addWhitespaceAroundPipe": true,
-    "python.pythonPath": "/home/igor/.virtualenvs/curso/bin/python"
+    "python.pythonPath": "C:\\Users\\igors\\.conda\\envs\\alura_pandas\\python.exe"
 }
